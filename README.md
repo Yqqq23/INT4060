@@ -1,6 +1,6 @@
 # Linear Algebra Lab – Interactive Learning Environment
 
-![Demo Screenshot](images/demo.png)
+![Demo Screenshot](demo.png)
 
 **Linear Algebra Lab** is an interactive web-based learning project designed to help students intuitively understand core concepts in linear algebra through visualization and experimentation. Instead of focusing only on symbolic manipulation, this project emphasizes conceptual understanding by allowing users to interact with vectors, matrices, and transformations in real time.
 
