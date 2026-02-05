@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Transformation - Linear Algebra Lab</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Linear Algebra Lab</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="basis-vectors.html">Basis Vectors</a></li>
+                <li><a href="linear-transformation.html" class="active">Linear Transformation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Linear Transformation</h1>
+            <p>Watch space transform through matrices</p>
+        </div>
+    </div>
+
+    <section class="interactive-section">
+        <div class="container">
+            <div class="learning-grid">
+                <!-- Interactive Canvas -->
+                <div class="canvas-container">
+                    <canvas id="transformCanvas"></canvas>
+                    <div class="canvas-info">
+                        <div class="info-item">
+                            <span class="info-label">Matrix:</span>
+                            <span id="matrixDisplay" class="info-value">[[1, 0], [0, 1]]</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Determinant:</span>
+                            <span id="determinant" class="info-value">1.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls Panel -->
+                <div class="controls-panel">
+                    <h3>Experience & Experiment</h3>
+                    <p class="panel-description">Adjust the matrix values to see how space transforms. Watch the grid deform!</p>
+                    
+                    <div class="control-group">
+                        <label>Transformation Matrix</label>
+                        <div class="math-formula" style="margin-bottom: 1rem;">
+                            \[A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}\]
+                        </div>
+                        <div class="matrix-input">
+                            <input type="number" id="m11" step="0.1" value="1" placeholder="a">
+                            <input type="number" id="m12" step="0.1" value="0" placeholder="b">
+                            <input type="number" id="m21" step="0.1" value="0" placeholder="c">
+                            <input type="number" id="m22" step="0.1" value="1" placeholder="d">
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Preset Transformations</label>
+                        <div class="preset-buttons">
+                            <button class="preset-btn" onclick="applyRotation()">Rotation 45°</button>
+                            <button class="preset-btn" onclick="applyScaling()">Scale 2x</button>
+                            <button class="preset-btn" onclick="applyShear()">Shear</button>
+                            <button class="preset-btn" onclick="applyReflection()">Reflection</button>
+                            <button class="preset-btn" onclick="applyProjection()">Projection</button>
+                            <button class="preset-btn" onclick="applyIdentity()">Identity</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Animation Speed</label>
+                        <div class="slider-row">
+                            <input type="range" id="animSpeed" min="0.5" max="5" step="0.5" value="2">
+                            <span id="speed-val">2.0x</span>
+                        </div>
+                        <button id="animateBtn" class="control-btn" style="margin-top: 1rem;">Animate Transformation</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="explanation-section">
+        <div class="container">
+            <div class="explanation-grid">
+                <div class="explanation-card">
+                    <h3>Observe: What's Happening?</h3>
+                    <p>As you change the matrix values, the entire grid transforms. Every point in space moves according to the transformation rule defined by the matrix.</p>
+                    <div class="math-box">
+                        \[\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix}\]
+                        <p class="math-explanation">The transformed position is the matrix multiplied by the original position</p>
+                    </div>
+                    <p>Notice how the basis vectors (î and ĵ) move to new positions - these are actually the columns of your matrix!</p>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>Understand: Properties</h3>
+                    <div class="key-points">
+                        <li><strong>Determinant:</strong> Measures how area changes. Negative = reflection, Zero = squishes to line</li>
+                        <li><strong>Lines stay lines:</strong> Straight lines remain straight (that's what makes it "linear")</li>
+                        <li><strong>Origin stays fixed:</strong> The point (0,0) never moves in a linear transformation</li>
+                        <li><strong>Grid stays parallel:</strong> Parallel lines remain parallel after transformation</li>
+                    </div>
+                    <div class="insight-box">
+                        <strong>Key Insight:</strong> A matrix doesn't just transform vectors - it transforms the entire space!
+                    </div>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>Apply: Common Transformations</h3>
+                    <div class="key-points">
+                        <li><strong>Rotation:</strong> \(\begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}\) - Spins space around origin</li>
+                        <li><strong>Scaling:</strong> \(\begin{bmatrix} s_x & 0 \\ 0 & s_y \end{bmatrix}\) - Stretches or compresses axes</li>
+                        <li><strong>Shear:</strong> \(\begin{bmatrix} 1 & k \\ 0 & 1 \end{bmatrix}\) - Slants space like pushing a deck of cards</li>
+                        <li><strong>Reflection:</strong> \(\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}\) - Flips across an axis</li>
+                    </div>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>Real-World Applications</h3>
+                    <div class="applications">
+                        <div class="app-item">
+                            <span class="app-icon">🎨</span>
+                            <div>
+                                <strong>Computer Graphics</strong>
+                                <p>Every rotation, zoom, and perspective change in 3D games uses matrix transformations</p>
+                            </div>
+                        </div>
+                        <div class="app-item">
+                            <span class="app-icon">🤖</span>
+                            <div>
+                                <strong>Robotics</strong>
+                                <p>Robot arms use transformation matrices to calculate joint angles and end-effector positions</p>
+                            </div>
+                        </div>
+                        <div class="app-item">
+                            <span class="app-icon">📸</span>
+                            <div>
+                                <strong>Image Processing</strong>
+                                <p>Photo filters and effects apply transformations to pixel coordinates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="try-it-section">
+        <div class="container">
+            <h2>Exploration Ideas</h2>
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <h4>Find Zero Determinant</h4>
+                    <p>Create a transformation that squishes all of 2D space onto a single line. What happens to the determinant?</p>
+                    <button class="challenge-btn" onclick="challengeZeroDet()">Try It</button>
+                </div>
+                <div class="challenge-card">
+                    <h4>Compose Transformations</h4>
+                    <p>Apply a rotation, then a scaling. Notice how the order matters! Different orders give different results.</p>
+                    <button class="challenge-btn" onclick="challengeCompose()">Try It</button>
+                </div>
+                <div class="challenge-card">
+                    <h4>Find the Inverse</h4>
+                    <p>Create a transformation, then find another matrix that undoes it. Their determinants multiply to 1!</p>
+                    <button class="challenge-btn" onclick="challengeInverse()">Try It</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Linear Algebra Lab - Educational Resource for University Students</p>
+        </div>
+    </footer>
+
+    <script src="js/linear-transformation.js"></script>
+</body>
+</html>

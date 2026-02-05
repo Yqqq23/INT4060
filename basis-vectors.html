@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basis Vectors - Linear Algebra Lab</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/interactive.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Linear Algebra Lab</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="basis-vectors.html" class="active">Basis Vectors</a></li>
+                <li><a href="linear-transformation.html">Linear Transformation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Basis Vectors</h1>
+            <p>The foundation of any vector space</p>
+        </div>
+    </div>
+
+    <section class="interactive-section">
+        <div class="container">
+            <div class="learning-grid">
+                <!-- Interactive Canvas -->
+                <div class="canvas-container">
+                    <canvas id="basisCanvas"></canvas>
+                    <div class="canvas-info">
+                        <div class="info-item">
+                            <span class="info-label">Target Vector:</span>
+                            <span id="targetVector" class="info-value">(0, 0)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Coefficients:</span>
+                            <span id="coefficients" class="info-value">0î + 0ĵ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls Panel -->
+                <div class="controls-panel">
+                    <h3>Experience & Experiment</h3>
+                    <p class="panel-description">Drag the purple (î) and green (ĵ) basis vector endpoints to adjust them. The red vector v shows the result: v = 2î + 1.5ĵ</p>
+                    
+                    <div class="control-group">
+                        <label>Basis Vector î (x-axis)</label>
+                        <div class="slider-row">
+                            <span>X:</span>
+                            <input type="range" id="i-x" min="-2" max="2" step="0.1" value="1">
+                            <span id="i-x-val">1.0</span>
+                        </div>
+                        <div class="slider-row">
+                            <span>Y:</span>
+                            <input type="range" id="i-y" min="-2" max="2" step="0.1" value="0">
+                            <span id="i-y-val">0.0</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Basis Vector ĵ (y-axis)</label>
+                        <div class="slider-row">
+                            <span>X:</span>
+                            <input type="range" id="j-x" min="-2" max="2" step="0.1" value="0">
+                            <span id="j-x-val">0.0</span>
+                        </div>
+                        <div class="slider-row">
+                            <span>Y:</span>
+                            <input type="range" id="j-y" min="-2" max="2" step="0.1" value="1">
+                            <span id="j-y-val">1.0</span>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="resetBtn" class="control-btn">Reset to Standard</button>
+                        <button id="randomBtn" class="control-btn">Random Basis</button>
+                    </div>
+
+                    <div class="independence-indicator">
+                        <span>Linear Independence:</span>
+                        <div id="independence" class="status-badge">Independent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="explanation-section">
+        <div class="container">
+            <div class="explanation-grid">
+                <div class="explanation-card">
+                    <h3>Observe: What's Happening?</h3>
+                    <p>As you drag the red dot, you're creating a target vector. Notice how the purple and green lines scale to reach your target? These scaled versions of the basis vectors always combine to form your target vector.</p>
+                    <div class="math-box">
+                        \[\vec{v} = a\vec{i} + b\vec{j}\]
+                        <p class="math-explanation">Any vector v can be written as a linear combination of basis vectors</p>
+                    </div>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>Understand: What Are Basis Vectors?</h3>
+                    <p>Basis vectors are like the "building blocks" of a vector space. Just as you can describe any location in a city using street addresses, you can describe any vector using basis vectors.</p>
+                    <ul class="key-points">
+                        <li><strong>Span:</strong> Together, basis vectors can create any vector in the space</li>
+                        <li><strong>Independence:</strong> No basis vector can be made from the others</li>
+                        <li><strong>Coordinates:</strong> The coefficients (a, b) are the vector's coordinates in this basis</li>
+                    </ul>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>Apply: Change the Basis</h3>
+                    <p>Try adjusting the basis vectors with the sliders. What happens when:</p>
+                    <ul class="key-points">
+                        <li>î and ĵ point in the same direction? (Not independent!)</li>
+                        <li>The basis vectors are perpendicular? (Orthogonal basis)</li>
+                        <li>Both have length 1 and are perpendicular? (Orthonormal basis)</li>
+                    </ul>
+                    <div class="insight-box">
+                        <strong>Key Insight:</strong> The same vector has different coordinates in different bases, but it's still the same geometric object!
+                    </div>
+                </div>
+
+                <div class="explanation-card">
+                    <h3>Real-World Applications</h3>
+                    <div class="applications">
+                        <div class="app-item">
+                            <span class="app-icon">🎮</span>
+                            <div>
+                                <strong>Game Development</strong>
+                                <p>Characters move in custom coordinate systems aligned with terrain or camera view</p>
+                            </div>
+                        </div>
+                        <div class="app-item">
+                            <span class="app-icon">📡</span>
+                            <div>
+                                <strong>Signal Processing</strong>
+                                <p>Fourier basis decomposes signals into frequency components</p>
+                            </div>
+                        </div>
+                        <div class="app-item">
+                            <span class="app-icon">🤖</span>
+                            <div>
+                                <strong>Machine Learning</strong>
+                                <p>Principal Component Analysis finds optimal basis for high-dimensional data</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="try-it-section">
+        <div class="container">
+            <h2>Test Your Understanding</h2>
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <h4>Challenge 1: Reach the Target</h4>
+                    <p>Can you adjust the basis vectors so that the coefficients are both equal to reach the target (2, 2)?</p>
+                    <button class="challenge-btn" onclick="setChallenge1()">Try Challenge</button>
+                </div>
+                <div class="challenge-card">
+                    <h4>Challenge 2: Detect Dependence</h4>
+                    <p>Make the basis vectors linearly dependent. What happens to the red target vector?</p>
+                    <button class="challenge-btn" onclick="setChallenge2()">Try Challenge</button>
+                </div>
+                <div class="challenge-card">
+                    <h4>Challenge 3: Orthonormal Basis</h4>
+                    <p>Create an orthonormal basis (perpendicular, length 1 each) rotated 45° from standard.</p>
+                    <button class="challenge-btn" onclick="setChallenge3()">Try Challenge</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Linear Algebra Lab - Educational Resource for University Students</p>
+        </div>
+    </footer>
+
+    <script src="js/basis-vectors.js"></script>
+</body>
+</html>

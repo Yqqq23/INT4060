@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Algebra Interactive Learning</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Linear Algebra Lab</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="basis-vectors.html">Basis Vectors</a></li>
+                <li><a href="linear-transformation.html">Linear Transformation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="Linear Algebra">Linear Algebra</h1>
+            <p class="subtitle">A Visual Introduction to What Matrices Really Do</p>
+            <div class="hero-buttons">
+                <a href="basis-vectors.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <img src="images/TransformGrid.gif" alt="Linear Transformation Animation" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+    </div>
+
+    <section id="introduction" class="content-section">
+        <div class="container">
+            <h2>Why Linear Algebra Matters</h2>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <h3>Foundation of Mathematics</h3>
+                    <p>Linear algebra is the backbone of modern mathematics, essential for understanding multidimensional spaces and solving complex systems of equations.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>Powers Machine Learning</h3>
+                    <p>Every neural network, computer vision algorithm, and AI system relies on linear algebra operations for processing and learning from data.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>Graphics & Animation</h3>
+                    <p>From video games to animated movies, linear transformations make it possible to rotate, scale, and project objects in 3D space.</p>
+                </div>
+                <div class="intro-card">
+                    <h3>Data Science</h3>
+                    <p>Analyze datasets, reduce dimensionality, and extract patterns using powerful matrix operations and vector spaces.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="topics-section">
+        <div class="container">
+            <h2>Interactive Learning Modules</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <div class="topic-image">
+                        <img src="images/basis-vectors.png" alt="Basis Vectors">
+                    </div>
+                    <div class="topic-content">
+                        <h3>Basis Vectors</h3>
+                        <p>Discover how basis vectors form the foundation of vector spaces. Experiment with different bases and see how any vector can be expressed as a combination of basis vectors.</p>
+                        <div class="math-formula">
+                            \[\vec{v} = a\hat{i} + b\hat{j}\]
+                        </div>
+                        <ul class="topic-features">
+                            <li>Interactive 2D and 3D visualizations</li>
+                            <li>Change basis dynamically</li>
+                            <li>Understand span and linear independence</li>
+                        </ul>
+                        <a href="basis-vectors.html" class="btn btn-topic">Explore Basis Vectors →</a>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="topic-image">
+                        <img src="images/transformation-new.svg" alt="Linear Transformation">
+                    </div>
+                    <div class="topic-content">
+                        <h3>Linear Transformation</h3>
+                        <p>Watch vectors transform before your eyes. Understand how matrices represent transformations like rotations, scaling, shearing, and reflections.</p>
+                        <div class="math-formula">
+                            \[T(\vec{v}) = A\vec{v}\]
+                        </div>
+                        <ul class="topic-features">
+                            <li>Real-time transformation animations</li>
+                            <li>Matrix manipulation controls</li>
+                            <li>Determinant and eigenvector visualization</li>
+                        </ul>
+                        <a href="linear-transformation.html" class="btn btn-topic">Explore Transformations →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="learning-approach">
+        <div class="container">
+            <h2>Our Learning Philosophy</h2>
+            <div class="approach-flow">
+                <div class="approach-step">
+                    <div class="step-number">1</div>
+                    <h3>Experience</h3>
+                    <p>Interact with visual elements and see concepts in action</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="approach-step">
+                    <div class="step-number">2</div>
+                    <h3>Observe</h3>
+                    <p>Notice patterns and relationships through experimentation</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="approach-step">
+                    <div class="step-number">3</div>
+                    <h3>Understand</h3>
+                    <p>Connect visual insights to mathematical theory</p>
+                </div>
+                <div class="arrow">→</div>
+                <div class="approach-step">
+                    <div class="step-number">4</div>
+                    <h3>Apply</h3>
+                    <p>Test your understanding with custom examples</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Linear Algebra Lab - Educational Resource for University Students</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
