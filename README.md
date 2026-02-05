@@ -73,19 +73,6 @@ In this project, interactive visual exploration comes first, followed by guided 
 
 ---
 
-## How to Run
-
-1. Clone the repository  
-2. Open `index.html` in a browser  
-3. Navigate between modules:
-   - Basis Vectors  
-   - Linear Transformation  
-
-No additional installation is required.
-
- Integration with AI-driven tutoring  
-
----
 
 ## License
 
